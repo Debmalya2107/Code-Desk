@@ -93,3 +93,4 @@ Gamified achievements for active collaboration.
 
 ## Snapshots
 
+![img alt](https://github.com/Debmalya2107/Code-Desk/blob/2f798eb81e96febcb40eda6d6a7bf03cdc7f4ac5/1.png)
