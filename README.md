@@ -7,7 +7,7 @@
 
 ## 🌟 Project Overview
 
-** Code-Desk ** is a web-based solution designed to **foster collaboration, innovation, and long-term partnerships** among students.  
+ Code-Desk  is a web-based solution designed to **foster collaboration, innovation, and long-term partnerships** among students.  
 It enables **skill-based matchmaking**, **real-time project management**, and **peer-driven evaluation** to create a holistic environment for academic teamwork.
 
 ### 🎯 Problem Statement
@@ -19,7 +19,7 @@ Students often face challenges in:
 - Keeping communication transparent and productive.
 - Evaluating team performance fairly.
 
-** Code-Desk** addresses these pain points through a unified, data-driven collaboration platform.
+ Code-Desk addresses these pain points through a unified, data-driven collaboration platform.
 
 ---
 
@@ -30,11 +30,11 @@ Students often face challenges in:
 - Personalized recommendations for forming project teams.
 
 ### 📊 Real-Time Task Boards
-- Interactive **Kanban-style boards** for creating, assigning, and tracking tasks.
+- Interactive kanban-style boards for creating, assigning, and tracking tasks.
 - Automatic progress updates and milestone tracking.
 
 ### 📈 Analytics Dashboard
-- Visual insights into **team performance, contribution ratio, and task completion rate**.
+- Visual insights into team performance, contribution ratio, and task completion rate.
 - Track project timelines, deadlines, and bottlenecks using dynamic charts.
 
 ### 💬 Peer Review System
