@@ -94,3 +94,10 @@ Gamified achievements for active collaboration.
 ## Snapshots
 
 ![img alt](https://github.com/Debmalya2107/Code-Desk/blob/2f798eb81e96febcb40eda6d6a7bf03cdc7f4ac5/1.png)
+![img alt](https://github.com/Debmalya2107/Code-Desk/blob/960e86009ed1e441c8309b902ce8205eee9dcc5f/2.png)
+![img alt](https://github.com/Debmalya2107/Code-Desk/blob/960e86009ed1e441c8309b902ce8205eee9dcc5f/3.png)
+![img alt](https://github.com/Debmalya2107/Code-Desk/blob/960e86009ed1e441c8309b902ce8205eee9dcc5f/4.png)
+![img alt](https://github.com/Debmalya2107/Code-Desk/blob/2f798eb81e96febcb40eda6d6a7bf03cdc7f4ac5/5.png)
+![img alt](https://github.com/Debmalya2107/Code-Desk/blob/2f798eb81e96febcb40eda6d6a7bf03cdc7f4ac5/6.png)
+![img alt](https://github.com/Debmalya2107/Code-Desk/blob/2f798eb81e96febcb40eda6d6a7bf03cdc7f4ac5/7.png)
+![img alt](https://github.com/Debmalya2107/Code-Desk/blob/2f798eb81e96febcb40eda6d6a7bf03cdc7f4ac5/8.png)
