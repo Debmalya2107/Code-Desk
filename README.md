@@ -1,5 +1,5 @@
-cat << 'EOF' > README.md
-# 🚀 CollabConnect – Smart Student Project Collaboration Platform
+
+# 🚀 Code-Desk – Smart Student Project Collaboration Platform
 
 > **A Node.js-powered platform that helps students find teammates, manage tasks, and collaborate efficiently on academic projects.**
 
@@ -7,7 +7,7 @@ cat << 'EOF' > README.md
 
 ## 🌟 Project Overview
 
-**CollabConnect** is a web-based solution designed to **foster collaboration, innovation, and long-term partnerships** among students.  
+** Code-Desk** is a web-based solution designed to **foster collaboration, innovation, and long-term partnerships** among students.  
 It enables **skill-based matchmaking**, **real-time project management**, and **peer-driven evaluation** to create a holistic environment for academic teamwork.
 
 ### 🎯 Problem Statement
@@ -19,7 +19,7 @@ Students often face challenges in:
 - Keeping communication transparent and productive.
 - Evaluating team performance fairly.
 
-**CollabConnect** addresses these pain points through a unified, data-driven collaboration platform.
+** Code-Desk** addresses these pain points through a unified, data-driven collaboration platform.
 
 ---
 
@@ -51,19 +51,45 @@ Students often face challenges in:
 
 | Category | Technology |
 |-----------|-------------|
-| **Frontend** | HTML5, CSS3, JavaScript, EJS / React (optional) |
+| **Frontend** | JavaScript, EJS, React  |
 | **Backend** | Node.js, Express.js |
-| **Database** | MongoDB / MySQL |
+| **Database** | prisma / SQLite |
 | **Authentication** | JWT / Passport.js |
 | **Real-time Features** | Socket.io |
 | **Data Visualization** | Chart.js / D3.js |
-| **Version Control** | Git & GitHub |
+
 
 ---
 
-## ⚙️ Installation & Setup
+## 🧮 Core Modules
+| Module                 | Description                                                |
+| ---------------------- | ---------------------------------------------------------- |
+| **User Module**        | Handles registration, login, and profile management.       |
+| **Team Module**        | Manages project creation, invitations, and collaboration.  |
+| **Task Module**        | Supports CRUD operations for tasks and milestone tracking. |
+| **Analytics Module**   | Generates charts and stats on performance and progress.    |
+| **Peer Review Module** | Facilitates peer evaluation and feedback collection.       |
 
-### 1️⃣ Clone the Repository
-```bash
-git clone https://github.com/yourusername/collabconnect.git
-cd collabconnect
+---
+
+
+## 🛡️ Security
+
+JWT-based authentication for secure access.
+Input validation & sanitation to prevent XSS and injection attacks.
+Role-based access control (Student / Admin).
+
+---
+
+
+## 📚 Future Scope
+AI-based skill recommendation system.
+Integration with Google Drive / GitHub for file and code sharing.
+Mobile app version using React Native or Flutter.
+Gamified achievements for active collaboration.
+
+
+---
+
+## Snapshots
+
