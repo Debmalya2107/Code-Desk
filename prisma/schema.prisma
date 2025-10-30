@@ -1,0 +1,228 @@
+// Student Collaboration Platform Schema
+// Features: User authentication, profiles, projects, skill matchmaking, Kanban board, analytics, peer review, file uploads
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// User Management
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  name         String
+  password     String
+  avatar       String?
+  bio          String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  // Relations
+  skills       UserSkill[]
+  projects     ProjectMember[]
+  notifications Notification[]
+  files        UploadedFile[]
+  chatMessages ChatMessage[]
+  assignedTasks Task[] @relation("TaskAssignee")
+  createdTasks Task[] @relation("TaskCreator")
+  givenReviews Review[] @relation("ReviewReviewer")
+  receivedReviews Review[] @relation("ReviewReviewee")
+
+  @@map("users")
+}
+
+// Skill Management
+model Skill {
+  id          String @id @default(cuid())
+  name        String @unique
+  category    String
+  description String?
+
+  // Relations
+  users       UserSkill[]
+  projects    ProjectSkill[]
+
+  @@map("skills")
+}
+
+model UserSkill {
+  id           String @id @default(cuid())
+  userId       String
+  skillId      String
+  proficiency  Int // 1-5 scale
+  createdAt    DateTime @default(now())
+
+  // Relations
+  user         User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  skill        Skill @relation(fields: [skillId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, skillId])
+  @@map("user_skills")
+}
+
+// Project Management
+model Project {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  teamSize    Int
+  status      String @default("open") // open, in_progress, completed
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  members     ProjectMember[]
+  skills      ProjectSkill[]
+  tasks       Task[]
+  milestones  Milestone[]
+  reviews     Review[]
+  files       UploadedFile[]
+  chatMessages ChatMessage[]
+
+  @@map("projects")
+}
+
+model ProjectSkill {
+  id        String @id @default(cuid())
+  projectId String
+  skillId   String
+  required  Boolean @default(true)
+  level     Int // 1-5 scale
+
+  // Relations
+  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  skill     Skill @relation(fields: [skillId], references: [id], onDelete: Cascade)
+
+  @@unique([projectId, skillId])
+  @@map("project_skills")
+}
+
+model ProjectMember {
+  id        String   @id @default(cuid())
+  projectId String
+  userId    String
+  role      String // owner, member, reviewer
+  joinedAt  DateTime @default(now())
+
+  // Relations
+  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  user      User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([projectId, userId])
+  @@map("project_members")
+}
+
+// Task Management (Kanban)
+model Task {
+  id          String   @id @default(cuid())
+  title       String
+  description String?
+  status      String @default("todo") // todo, in_progress, review, done
+  priority    String @default("medium") // low, medium, high
+  projectId   String
+  assigneeId  String?
+  creatorId   String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  dueDate     DateTime?
+
+  // Relations
+  project     Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  assignee    User? @relation("TaskAssignee", fields: [assigneeId], references: [id], onDelete: SetNull)
+  creator     User @relation("TaskCreator", fields: [creatorId], references: [id], onDelete: Cascade)
+  reviews     Review[]
+
+  @@map("tasks")
+}
+
+// Milestone Tracking
+model Milestone {
+  id          String   @id @default(cuid())
+  title       String
+  description String?
+  completed   Boolean @default(false)
+  projectId   String
+  dueDate     DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  project     Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@map("milestones")
+}
+
+// Peer Review System
+model Review {
+  id          String   @id @default(cuid())
+  taskId      String?
+  projectId   String?
+  reviewerId  String
+  revieweeId  String
+  rating      Int // 1-5 scale
+  comments    String
+  anonymous   Boolean @default(false)
+  createdAt   DateTime @default(now())
+
+  // Relations
+  task        Task? @relation(fields: [taskId], references: [id], onDelete: Cascade)
+  project     Project? @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  reviewer    User @relation("ReviewReviewer", fields: [reviewerId], references: [id], onDelete: Cascade)
+  reviewee    User @relation("ReviewReviewee", fields: [revieweeId], references: [id], onDelete: Cascade)
+
+  @@map("reviews")
+}
+
+// File Management
+model UploadedFile {
+  id        String   @id @default(cuid())
+  filename  String
+  originalName String
+  mimeType  String
+  size      Int
+  path      String
+  projectId String?
+  uploaderId String
+  createdAt DateTime @default(now())
+
+  // Relations
+  project   Project? @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  uploader  User @relation(fields: [uploaderId], references: [id], onDelete: Cascade)
+
+  @@map("uploaded_files")
+}
+
+// Notification System
+model Notification {
+  id        String   @id @default(cuid())
+  userId    String
+  title     String
+  message   String
+  type      String // project_invite, task_assigned, review_received, etc.
+  read      Boolean @default(false)
+  createdAt DateTime @default(now())
+
+  // Relations
+  user      User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("notifications")
+}
+
+// Real-time Chat
+model ChatMessage {
+  id        String   @id @default(cuid())
+  content   String
+  userId    String
+  projectId String
+  createdAt DateTime @default(now())
+
+  // Relations
+  user      User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@map("chat_messages")
+}
