@@ -7,7 +7,7 @@
 
 ## 🌟 Project Overview
 
-** Code-Desk** is a web-based solution designed to **foster collaboration, innovation, and long-term partnerships** among students.  
+** Code-Desk ** is a web-based solution designed to **foster collaboration, innovation, and long-term partnerships** among students.  
 It enables **skill-based matchmaking**, **real-time project management**, and **peer-driven evaluation** to create a holistic environment for academic teamwork.
 
 ### 🎯 Problem Statement
